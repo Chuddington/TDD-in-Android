@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.tddinandroid.databinding.FragmentCdListBinding
 
 interface Counter {
@@ -15,6 +16,7 @@ class CdListFragment : Fragment(), Counter {
 
     private var _binding: FragmentCdListBinding? = null
     private val binding: FragmentCdListBinding get() = _binding!!
+    private val viewModel: CdListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,5 +32,5 @@ class CdListFragment : Fragment(), Counter {
         _binding = null
     }
 
-    override fun getCount(): Int = 3
+    override fun getCount(): Int = viewModel.getCount()
 }
