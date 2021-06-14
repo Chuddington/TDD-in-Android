@@ -11,4 +11,11 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
+    <fragment
+        android:id="@+id/nav_cd_list"
+        android:name="com.example.tddinandroid.cd.ui.CdListFragment"
+        android:label="@string/menu_cd_list"
+        tools:layout="@layout/fragment_cd_list"
+        />
+
 </navigation>
