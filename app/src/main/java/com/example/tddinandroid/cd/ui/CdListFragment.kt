@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.tddinandroid.databinding.FragmentCdListBinding
 
-class CdListFragment : Fragment() {
+interface Counter {
+    fun getCount(): Int
+}
+
+class CdListFragment : Fragment(), Counter {
 
     private var _binding: FragmentCdListBinding? = null
     private val binding: FragmentCdListBinding get() = _binding!!
@@ -25,4 +29,6 @@ class CdListFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    override fun getCount(): Int = 3
 }

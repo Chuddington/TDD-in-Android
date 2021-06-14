@@ -13,7 +13,7 @@ import org.junit.runner.RunWith
 class MainNavigationTest {
 
     @Test
-    fun something() {
+    fun navigatesToCdListFragmentFromActivity() {
         launchActivity<MainActivity>().use {
             onView(withContentDescription("Open navigation drawer")).perform(ViewActions.click())
             onView(withId(R.id.nav_cd_list)).perform(ViewActions.click())
