@@ -15,7 +15,7 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     themeResId: Int = R.style.FragmentScenarioEmptyFragmentActivityTheme,
     factory: FragmentFactory? = null,
     crossinline action: T.() -> Unit = {}
-) {
+): ActivityScenario<HiltTestActivity> {
     val mainActivityIntent = Intent.makeMainActivity(
         ComponentName(
             ApplicationProvider.getApplicationContext(),
@@ -23,7 +23,7 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
         )
     ).putExtra(FRAGMENT_SCENARIO_THEME_EXTRAS_BUNDLE_KEY, themeResId)
 
-    ActivityScenario.launch<HiltTestActivity>(mainActivityIntent).onActivity { activity ->
+    return ActivityScenario.launch<HiltTestActivity>(mainActivityIntent).onActivity { activity ->
         factory?.let { factory ->
             activity.supportFragmentManager.fragmentFactory = factory
         }
