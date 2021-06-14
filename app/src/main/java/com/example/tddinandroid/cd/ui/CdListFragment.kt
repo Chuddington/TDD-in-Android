@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.tddinandroid.databinding.FragmentCdListBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-interface Counter {
-    fun getCount(): Int
-}
-
+@AndroidEntryPoint
 class CdListFragment : Fragment(), Counter {
 
     private var _binding: FragmentCdListBinding? = null

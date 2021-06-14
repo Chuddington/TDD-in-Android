@@ -8,6 +8,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.tddinandroid.R
 import com.example.tddinandroid.cd.ui.CdListFragment
+import com.example.tddinandroid.hilt.launchFragmentInHiltContainer
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.collection.IsMapContaining.hasEntry
@@ -21,14 +22,14 @@ class CdListFragmentTest {
 
     @Test
     fun cdTotalCountIsAccessible() = runBlockingTest {
-        launchFragmentInContainer<CdListFragment>(
+        launchFragmentInHiltContainer<CdListFragment>(
             fragmentArgs = null,
             factory = null
-        ).onFragment {
+        ) {
             assertEquals(
                 "The element count should match!",
                 3,
-                it.getCount()
+                this.getCount()
             )
         }
     }

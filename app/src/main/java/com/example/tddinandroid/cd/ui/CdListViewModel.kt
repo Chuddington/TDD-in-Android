@@ -1,9 +1,10 @@
 package com.example.tddinandroid.cd.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CdListViewModel : ViewModel(), Counter {
+@HiltViewModel
+class CdListViewModel @Inject constructor() : ViewModel(), Counter {
     override fun getCount() = 3
 }
