@@ -1,8 +1,8 @@
 package com.example.tddinandroid.cd.ui
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.io.Serializable
 import javax.inject.Inject
@@ -11,10 +11,6 @@ data class Cd(val albumName: String, val artistName: String) : Serializable
 
 @HiltViewModel
 class CdListViewModel @Inject constructor() : ViewModel(), Counter {
-    private val _cdList: MutableLiveData<List<Cd>> = MutableLiveData<List<Cd>>().apply {
-        value = loadCds()
-    }
-
     fun loadCds(): List<Cd> {
         return listOf(
             Cd(albumName = "Dissolution", artistName = "The Overmind"),
@@ -23,7 +19,9 @@ class CdListViewModel @Inject constructor() : ViewModel(), Counter {
         )
     }
 
-    val cdList: LiveData<List<Cd>> = _cdList
+    val cdList: LiveData<List<Cd>> = liveData {
+        emit(loadCds())
+    }
 
     override fun getCount() = cdList.value?.size ?: 0
 }
