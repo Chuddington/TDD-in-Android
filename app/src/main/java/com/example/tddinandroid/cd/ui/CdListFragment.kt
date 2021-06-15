@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.tddinandroid.R
 import com.example.tddinandroid.databinding.FragmentCdListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,10 +30,8 @@ class CdListFragment : Fragment(), Counter {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.cdList.observeForever { cds ->
-            activity?.let { fragActivity ->
-                binding.cdRecycler.adapter =
-                    CdViewAdapter(cds, findNavController())
-                binding.cdRecycler.refreshDrawableState()
+            activity?.let {
+                binding.cdRecycler.adapter = CdViewAdapter(cds, findNavController())
             }
         }
 

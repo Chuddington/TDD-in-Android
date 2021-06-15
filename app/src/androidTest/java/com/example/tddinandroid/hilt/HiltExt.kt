@@ -3,8 +3,6 @@ package com.example.tddinandroid.hilt
 import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
-import androidx.annotation.StyleRes
-import androidx.core.util.Preconditions
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.navigation.NavController
@@ -32,7 +30,9 @@ inline fun <reified T : Fragment> launchFragmentInHiltContainer(
             activity.supportFragmentManager.fragmentFactory = factory
         }
         val fragment = activity.supportFragmentManager.fragmentFactory.instantiate(
-            Preconditions.checkNotNull(T::class.java.classLoader),
+            requireNotNull(T::class.java.classLoader) {
+                "Classloader for ${T::class.java.simpleName} cannot be null!"
+            },
             T::class.java.name
         )
         fragment.arguments = fragmentArgs

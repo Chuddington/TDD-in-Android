@@ -17,12 +17,14 @@ import com.example.tddinandroid.cd.ui.CdListFragment
 import com.example.tddinandroid.cd.ui.CdViewAdapter
 import com.example.tddinandroid.hilt.HiltTestActivity
 import com.example.tddinandroid.hilt.launchFragmentInHiltContainer
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
+@ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 class CdListFragmentTest {
 
@@ -41,7 +43,7 @@ class CdListFragmentTest {
                 assertEquals(
                     "The element count should match!",
                     3,
-                    (this as CdListFragment).getCount()
+                    this.getCount()
                 )
             }
     }

@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cdAdapterItemLayout"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -16,7 +16,7 @@
 
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         tools:text="Dissolution"
-        />
+        android:textIsSelectable="false" />
 
     <TextView
         android:id="@+id/artistName"
@@ -28,6 +28,6 @@
 
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         tools:text="The Overmind"
-        />
+        android:textIsSelectable="false" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

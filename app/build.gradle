@@ -4,6 +4,8 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
+final def lintReportPath = "${buildDir}/reports/lint"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -35,6 +37,26 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    lintOptions {
+        abortOnError true
+        checkAllWarnings true
+        checkDependencies true
+        checkGeneratedSources false
+        checkReleaseBuilds true
+        checkTestSources true
+        disable "UnusedIds"
+        explainIssues true
+        htmlOutput file("${lintReportPath}/lint-report.html")
+        htmlReport true
+        ignoreWarnings false
+        quiet false
+        showAll true
+        textOutput file("${lintReportPath}/lint-results.txt")
+        textReport true
+        warningsAsErrors true
+        xmlOutput file("${lintReportPath}/lint-report.xml")
+        xmlReport true
     }
     packagingOptions {
         pickFirst "META-INF/AL2.0"

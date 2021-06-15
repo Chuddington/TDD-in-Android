@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/home_navigation"
->
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="InvalidNavigation"
+    app:startDestination="@id/home_navigation">
 
     <include app:graph="@navigation/home_navigation" />
     <include app:graph="@navigation/cd_navigation" />
@@ -17,7 +17,6 @@
     <action
         android:id="@+id/action_global_cd_list_navigation"
         app:destination="@id/cd_list_navigation"
-        app:popUpTo="@id/mobile_navigation"
-        />
+        app:popUpTo="@id/mobile_navigation" />
 
 </navigation>
