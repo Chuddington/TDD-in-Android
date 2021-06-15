@@ -7,6 +7,10 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 final def lintReportPath = "${buildDir}/reports/lint"
 
 android {
+    signingConfigs {
+        release {
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
     buildFeatures {
@@ -15,6 +19,10 @@ android {
     buildTypes {
         debug {
             debuggable true
+            jniDebuggable true
+            versionNameSuffix '.debug'
+            renderscriptDebuggable true
+            signingConfig signingConfigs.debug
         }
         release {
             debuggable false
@@ -61,6 +69,14 @@ android {
     packagingOptions {
         pickFirst "META-INF/AL2.0"
         pickFirst "META-INF/LGPL2.1"
+    }
+    sourceSets {
+        androidTest.manifest.srcFile "${project.projectDir}/src/androidTest/AndroidManifest.xml"
+        release {
+            java {
+                srcDirs 'src/release/java'
+            }
+        }
     }
     testOptions {
         animationsDisabled = true

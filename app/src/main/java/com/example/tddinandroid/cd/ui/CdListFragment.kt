@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.tddinandroid.cd.domain.Counter
 import com.example.tddinandroid.databinding.FragmentCdListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,8 +35,6 @@ class CdListFragment : Fragment(), Counter {
                 binding.cdRecycler.adapter = CdViewAdapter(cds, findNavController())
             }
         }
-
-        viewModel.loadCds()
     }
 
     override fun onDestroyView() {

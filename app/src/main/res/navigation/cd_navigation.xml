@@ -25,7 +25,7 @@
         >
         <argument
             android:name="cdDetailsSerializable"
-            app:argType="com.example.tddinandroid.cd.ui.Cd"
+            app:argType="com.example.tddinandroid.cd.domain.Cd"
             />
     </dialog>
 
