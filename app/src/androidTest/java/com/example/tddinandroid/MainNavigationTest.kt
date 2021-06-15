@@ -16,7 +16,7 @@ class MainNavigationTest {
     fun navigatesToCdListFragmentFromActivity() {
         launchActivity<MainActivity>().use {
             onView(withContentDescription("Open navigation drawer")).perform(ViewActions.click())
-            onView(withId(R.id.nav_cd_list)).perform(ViewActions.click())
+            onView(withId(R.id.cd_list_navigation)).perform(ViewActions.click())
             onView(withId(R.id.cdListLayout)).check(ViewAssertions.matches(isDisplayed()))
         }
     }

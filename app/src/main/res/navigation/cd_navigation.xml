@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/cd_list_navigation"
+    app:startDestination="@id/cdListFragment"
+    >
+
+    <fragment
+        android:id="@+id/cdListFragment"
+        android:name="com.example.tddinandroid.cd.ui.CdListFragment"
+        android:label="@string/menu_cd_list"
+        tools:layout="@layout/fragment_cd_list"
+        >
+        <action
+            android:id="@+id/action_nav_cd_list_to_nav_cd_details"
+            app:destination="@id/cdDetailsFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/cdDetailsFragment"
+        android:name="com.example.tddinandroid.cd.details.ui.CdDetailsFragment"
+        android:label="@string/menu_cd_list"
+        tools:layout="@layout/dialog_cd_details"
+        >
+        <argument
+            android:name="cdDetailsSerializable"
+            app:argType="com.example.tddinandroid.cd.ui.Cd"
+            />
+    </dialog>
+
+</navigation>
