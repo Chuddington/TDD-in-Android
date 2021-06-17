@@ -21,6 +21,10 @@ class CdDetailsFragment : DialogFragment() {
         return binding.root
     }
 
+    fun getPurchases(): Set<Int> {
+        return setOf(1)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
