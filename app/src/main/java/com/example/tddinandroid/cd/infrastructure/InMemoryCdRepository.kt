@@ -3,12 +3,19 @@ package com.example.tddinandroid.cd.infrastructure
 import com.example.tddinandroid.cd.domain.Cd
 import javax.inject.Inject
 
-class InMemoryCdRepository @Inject constructor() : CdRepository {
-    private val map: MutableMap<Int, Cd> = mutableMapOf(
-        0 to Cd(albumName = "Dissolution", artistName = "The Overmind"),
-        1 to Cd(albumName = "Wishes and Delusions", artistName = "Rakoon"),
-        2 to Cd(albumName = "Our Smiles", artistName = "Rakoon")
-    )
-
+data class InMemoryCdRepository @Inject constructor(
+    private val map: MutableMap<Int, Cd>
+) : CdRepository {
     override fun getAll(): List<Cd> = map.values.toList()
+
+    override fun create(data: Cd): Int {
+        val key = (map.keys.maxOrNull() ?: 0) + 1
+        map[key] = data
+        return key
+    }
+
+    override fun read(id: Int): ReadResult<Cd> = map[id]?.let { cd ->
+        ReadResult.Success(cd)
+    } ?: ReadResult.NotAvailable
+
 }

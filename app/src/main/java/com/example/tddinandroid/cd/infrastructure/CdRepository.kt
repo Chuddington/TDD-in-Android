@@ -4,4 +4,6 @@ import com.example.tddinandroid.cd.domain.Cd
 
 interface CdRepository {
     fun getAll(): List<Cd>
+    fun create(data: Cd): Int
+    fun read(id: Int): ReadResult<Cd>
 }
