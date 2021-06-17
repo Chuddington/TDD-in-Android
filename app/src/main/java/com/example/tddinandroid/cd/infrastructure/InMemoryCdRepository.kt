@@ -4,18 +4,30 @@ import com.example.tddinandroid.cd.domain.Cd
 import javax.inject.Inject
 
 data class InMemoryCdRepository @Inject constructor(
-    private val map: MutableMap<Int, Cd>
+    private val availableCds: MutableMap<Int, Cd>,
+    private val purchasedCds: MutableSet<Int>
 ) : CdRepository {
-    override fun getAll(): List<Cd> = map.values.toList()
+    override fun getAll(): List<Cd> = availableCds.values.toList()
 
     override fun create(data: Cd): Int {
-        val key = (map.keys.maxOrNull() ?: 0) + 1
-        map[key] = data
+        val key = (availableCds.keys.maxOrNull() ?: 0) + 1
+        availableCds[key] = data.copy(id = key)
         return key
     }
 
-    override fun read(id: Int): ReadResult<Cd> = map[id]?.let { cd ->
+    override fun read(id: Int): ReadResult<Cd> = availableCds[id]?.let { cd ->
         ReadResult.Success(cd)
     } ?: ReadResult.NotAvailable
+
+    override fun getPurchasedCds(userId: Int): Set<Int> = purchasedCds.toSet()
+
+    override fun purchaseCd(id: Int) {
+        if (availableCds.containsKey(id)) {
+            purchasedCds.add(id)
+        }
+    }
+
+    override fun hasPurchasedCd(id: Int): ReadResult<Boolean> =
+        ReadResult.Success(purchasedCds.contains(id))
 
 }

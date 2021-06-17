@@ -13,7 +13,10 @@ import dagger.hilt.android.components.ViewModelComponent
 object CdRepositoryModule {
 
     @Provides
-    fun providesCdRepository(@CdRepositoryMap inMemoryMap: MutableMap<Int, Cd>): CdRepository =
-        InMemoryCdRepository(inMemoryMap)
+    fun providesCdRepository(
+        @CdRepositoryMap inMemoryMap: MutableMap<Int, Cd>,
+        @PurchasedCdSet inMemoryPurchasedCdSet: MutableSet<Int>
+    ): CdRepository =
+        InMemoryCdRepository(inMemoryMap, inMemoryPurchasedCdSet)
 
 }

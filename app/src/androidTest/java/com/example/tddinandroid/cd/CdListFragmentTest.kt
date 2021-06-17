@@ -19,14 +19,22 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import com.example.tddinandroid.hilt.onFragment
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @ExperimentalCoroutinesApi
+@HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
 class CdListFragmentTest {
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
+
     private val testNavHostController =
         TestNavHostController(ApplicationProvider.getApplicationContext())
 

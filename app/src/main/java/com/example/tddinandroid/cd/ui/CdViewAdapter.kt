@@ -33,7 +33,7 @@ class CdViewAdapter(private val data: List<Cd>, private val navController: NavCo
 
             binding.root.setOnClickListener {
                 navController
-                    .navigate(CdListFragmentDirections.actionNavCdListToNavCdDetails(data))
+                    .navigate(CdListFragmentDirections.actionNavCdListToNavCdDetails(data.id))
             }
         }
     }

@@ -24,8 +24,8 @@
         tools:layout="@layout/dialog_cd_details"
         >
         <argument
-            android:name="cdDetailsSerializable"
-            app:argType="com.example.tddinandroid.cd.domain.Cd"
+            android:name="cdId"
+            app:argType="integer"
             />
     </dialog>
 

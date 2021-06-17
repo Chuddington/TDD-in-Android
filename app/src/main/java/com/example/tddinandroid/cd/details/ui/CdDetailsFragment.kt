@@ -5,12 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.example.tddinandroid.databinding.DialogCdDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CdDetailsFragment : DialogFragment() {
 
     private var _binding: DialogCdDetailsBinding? = null
     private val binding: DialogCdDetailsBinding get() = _binding!!
+
+    private val viewModel: CdDetailsViewModel by viewModels()
+    private val navigationArgs: CdDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,8 +28,12 @@ class CdDetailsFragment : DialogFragment() {
         return binding.root
     }
 
-    fun getPurchases(): Set<Int> {
-        return setOf(1)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.cdDetailsPurchaseButton.setOnClickListener {
+            viewModel.purchaseCd(navigationArgs.cdId)
+        }
     }
 
     override fun onDestroyView() {
