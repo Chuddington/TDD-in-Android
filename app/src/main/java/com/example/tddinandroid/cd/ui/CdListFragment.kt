@@ -30,7 +30,7 @@ class CdListFragment : Fragment(), Counter {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.cdList.observeForever { cds ->
+        viewModel.cdList.observe(viewLifecycleOwner) { cds ->
             activity?.let {
                 binding.cdRecycler.adapter = CdViewAdapter(cds, findNavController())
             }

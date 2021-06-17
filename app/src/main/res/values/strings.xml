@@ -7,5 +7,6 @@
     <string name="menu_home">Home</string>
     <string name="menu_cd_list">CD List</string>
     <string name="purchase_cd">Purchase CD</string>
+    <string name="already_purchased_cd">Already purchased CD!</string>
     <string name="cd_id_key">cdId</string>
 </resources>

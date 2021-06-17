@@ -1,6 +1,7 @@
 package com.example.tddinandroid.cd.details
 
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
@@ -13,7 +14,6 @@ import com.example.tddinandroid.R
 import com.example.tddinandroid.cd.details.ui.CdDetailsFragment
 import com.example.tddinandroid.cd.domain.Cd
 import com.example.tddinandroid.cd.hilt.CdRepositoryMap
-import com.example.tddinandroid.cd.hilt.CdRepositoryModule
 import com.example.tddinandroid.cd.hilt.InMemoryMapModule
 import com.example.tddinandroid.cd.hilt.PurchasedCdSet
 import com.example.tddinandroid.config.activity.HiltActivityFactory
@@ -34,16 +34,20 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 @HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
 @UninstallModules(InMemoryMapModule::class)
 class CdDetailsFragmentTest {
 
+    private val cdTwo = Cd(id = 1, albumName = "Wishes and Delusions", artistName = "Rakoon")
+    private val cdOne = Cd(id = 0, albumName = "Dissolution", artistName = "The Overmind")
+
     private val cdIdKey = InstrumentationRegistry.getInstrumentation()
         .targetContext.resources.getString(R.string.cd_id_key)
 
     private val navigationArguments = Bundle().apply {
-        putInt(cdIdKey, 1)
+        putInt(cdIdKey, cdTwo.id)
     }
 
     private val testNavHostController =
@@ -64,8 +68,8 @@ class CdDetailsFragmentTest {
     @CdRepositoryMap
     @JvmField
     val availableCds: MutableMap<Int, Cd> = mutableMapOf(
-        0 to Cd(albumName = "Dissolution", artistName = "The Overmind"),
-        1 to Cd(albumName = "Wishes and Delusions", artistName = "Rakoon"),
+        cdOne.id to cdOne,
+        cdTwo.id to cdTwo,
     )
 
     @BindValue
@@ -89,8 +93,6 @@ class CdDetailsFragmentTest {
     @ExperimentalCoroutinesApi
     @Test
     fun aCdCanBePurchasedByTheUser() = runBlockingTest {
-        val cdId = 1
-
         scenario = scenario.onFragment<HiltTestActivity, CdDetailsFragment>(
             fragmentFactory.getTagName()
         ) {
@@ -102,7 +104,7 @@ class CdDetailsFragmentTest {
 
         assertTrue(
             "The set of purchased CDs should contain the ID!",
-            purchasedCds.contains(cdId)
+            purchasedCds.contains(cdTwo.id)
         )
     }
 }

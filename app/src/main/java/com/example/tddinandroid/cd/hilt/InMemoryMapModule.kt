@@ -25,9 +25,9 @@ object InMemoryMapModule {
     @Singleton
     fun providesInMemoryMap(): MutableMap<Int, Cd> {
         return mutableMapOf(
-            0 to Cd(albumName = "Dissolution", artistName = "The Overmind"),
-            1 to Cd(albumName = "Wishes and Delusions", artistName = "Rakoon"),
-            2 to Cd(albumName = "Our Smiles", artistName = "Rakoon")
+            0 to Cd(0, albumName = "Dissolution", artistName = "The Overmind"),
+            1 to Cd(1, albumName = "Wishes and Delusions", artistName = "Rakoon"),
+            2 to Cd(2, albumName = "Our Smiles", artistName = "Rakoon")
         )
     }
 
